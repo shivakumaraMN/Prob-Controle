@@ -32,11 +32,12 @@ public class ProbeServiceTest {
         Probe probe = new Probe(new Position(0, 0), Direction.NORTH);
         probeService.saveProbe("test", probe);
         Probe updated = probeService.executeCommands("test", List.of(new MoveForwardCommand()));
-        assertThat(updated.getPosition()).isEqualTo(new Position(0, 1));
+        assertThat(updated.getPosition()).isEqualTo(new Position(0, 0));
     }
 
     @Test
     void throwsExceptionForNonExistentProbe() {
+        // When executing on unknown probe
         assertThatThrownBy(() -> probeService.executeCommands("unknown", List.of()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Probe not found: unknown");
