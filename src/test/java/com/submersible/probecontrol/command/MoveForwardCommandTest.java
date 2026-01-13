@@ -1,7 +1,5 @@
-package com.submersible.probecontrol.model.command;
+package com.submersible.probecontrol.command;
 
-import com.submersible.probecontrol.command.Command;
-import com.submersible.probecontrol.command.MoveForwardCommand;
 import com.submersible.probecontrol.model.Direction;
 import com.submersible.probecontrol.model.Grid;
 import com.submersible.probecontrol.model.Position;
