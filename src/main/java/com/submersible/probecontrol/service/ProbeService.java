@@ -19,5 +19,8 @@ public class ProbeService {
     public void saveProbe(String id, Probe probe) {
         probes.put(id, probe);
     }
+    public Probe getProbe(String id) {
+        return probes.get(id);
+    }
 
 }

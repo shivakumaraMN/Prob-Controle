@@ -15,5 +15,8 @@ public class ProbeManager {
         Probe probe = new Probe(start, direction);
         probeService.saveProbe(id, probe);
     }
+    public Probe getProbe(String id) {
+        return probeService.getProbe(id);
+    }
 
 }
