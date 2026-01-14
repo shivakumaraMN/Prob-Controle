@@ -1,0 +1,10 @@
+1. Run This main class - ProbeControlApplication
+2. Open Postman to test Endpoints.
+3. New > Request.
+4. Method: POST
+5. URL: http://localhost:8080/api/probe/default/commands
+6. Headers: Content-Type: application/json
+7. Body > raw > JSON — example body: ["F", "R", "F", "L", "F"]
+8. Send Request.
+9. You should receive a response with the final position and direction of the probe.
+10. Example Response: {"x":1,"y":2,"direction":"NORTH"}
