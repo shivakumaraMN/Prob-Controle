@@ -37,6 +37,6 @@ public class Probe {
     }
 
     public List<Position> getVisitedPositions() {
-        return List.copyOf(visitedPositions); // Immutable copy
+        return List.copyOf(visitedPositions);
     }
 }

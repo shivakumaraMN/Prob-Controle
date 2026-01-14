@@ -17,6 +17,5 @@ public class MoveForwardCommand implements Command {
         if (grid.canMoveTo(next)) {
             probe.moveTo(next);
         }
-        // If can't move, stay put (edge case: obstacles or boundaries)
     }
 }

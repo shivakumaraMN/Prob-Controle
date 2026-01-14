@@ -1,4 +1,3 @@
-// java
 package com.submersible.probecontrol.controller;
 
 import com.submersible.probecontrol.command.*;
@@ -52,7 +51,6 @@ public class ProbeController {
     }
 
     private Command parseCommand(String cmd) {
-        // Enhanced with Java 21 pattern matching for switch (preview feature)
         return switch (cmd.toUpperCase()) {
             case "F" -> new MoveForwardCommand();
             case "B" -> new MoveBackwardCommand();
