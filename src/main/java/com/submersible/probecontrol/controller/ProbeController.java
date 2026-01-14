@@ -1,8 +1,11 @@
+// java
 package com.submersible.probecontrol.controller;
 
 import com.submersible.probecontrol.command.*;
 import com.submersible.probecontrol.model.Probe;
 import com.submersible.probecontrol.service.ProbeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +17,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/probe")
 public class ProbeController {
 
+    private static final Logger log = LoggerFactory.getLogger(ProbeController.class);
+
     private final ProbeService probeService;
 
     public ProbeController(ProbeService probeService) {
@@ -24,10 +29,21 @@ public class ProbeController {
     public ResponseEntity<Map<String, Object>> executeCommands(
             @PathVariable String id,
             @RequestBody List<String> commandStrings) {
+
+        log.info("Executing commands for probe {}: {}", id, commandStrings);
+
         List<Command> commands = commandStrings.stream()
                 .map(this::parseCommand)
                 .collect(Collectors.toList());
+
         Probe updatedProbe = probeService.executeCommands(id, commands);
+
+        log.info("Probe {} updated: position={}, direction={}, visitedCount={}",
+                id,
+                updatedProbe.getPosition(),
+                updatedProbe.getDirection(),
+                updatedProbe.getVisitedPositions() != null ? updatedProbe.getVisitedPositions().size() : 0);
+
         return ResponseEntity.ok(Map.of(
                 "position", updatedProbe.getPosition(),
                 "direction", updatedProbe.getDirection(),
